@@ -1,0 +1,28 @@
+medicine_name,alternate_medicine,strength,manufacturer,type,color,batch_no,expiry_date,quantity,purchase_rate,sale_rate,discount,tax,Company_name,invoice_no,date_of_sale
+Dolo 650 Tablet,Calpol 650 Tablet,650mg,Micro Labs Ltd,box1,Blue,BAT001,12/2026,40,28,35,5,12,Micro Labs Ltd,INV001,2024-11-01
+Dolo 500 Tablet,Calpol 500 Tablet,500mg,Micro Labs Ltd,box1,Blue,BAT002,09/2025,50,22,30,5,12,Micro Labs Ltd,INV002,2024-11-05
+Calpol 500 Tablet,Crocin 500 Tablet,500mg,GSK,box1,Blue,BAT003,10/2026,60,20,28,5,12,GSK Pharma,INV003,2024-10-20
+Crocin Advance 650,Dolo 650 Tablet,650mg,GSK,box1,Blue,BAT004,07/2026,35,26,34,5,12,GSK Pharma,INV004,2024-11-12
+Zerodol P Tablet,Combiflam Tablet,100mg+325mg,Ipca,box1,Green,BAT005,03/2026,30,24,38,10,18,Ipca Labs,INV005,2024-09-15
+Combiflam Tablet,Saridon Tablet,400mg+325mg,Sanofi,box1,Green,BAT006,03/2026,45,22,35,10,18,Sanofi India,INV006,2024-10-01
+
+Saridon Tablet,Combiflam Tablet,250mg+250mg,Pfizer,box2,Green,BAT007,05/2025,50,18,30,10,18,Pfizer India,INV007,2024-11-02
+Zerodol SP Tablet,Diclofenac Tablet,100mg+15mg,Ipca,box2,Green,BAT008,11/2026,25,30,45,10,18,Ipca Labs,INV008,2024-10-30
+Azithral 500 Tablet,Azithromycin 500,500mg,Ipca,box2,Yellow,BAT009,06/2026,25,55,75,0,12,Ipca Labs,INV009,2024-11-11
+Augmentin 625 Duo,Amoxiclav 625,625mg,GSK,box2,Yellow,BAT010,04/2025,18,90,120,0,12,GSK Pharma,INV010,2024-10-18
+Allegra 120 Tablet,Cetirizine 10 Tablet,120mg,Sanofi,box2,Pink,BAT011,09/2026,40,55,80,0,12,Sanofi India,INV011,2024-11-09
+Cetirizine 10 Tablet,Levocetirizine 5 Tablet,10mg,Generic,box2,Pink,BAT012,10/2026,80,4,8,0,12,Generic,INV012,2024-11-15
+
+Pantocid D Capsule,Pan D Capsule,40mg+30mg,Sun Pharma,box3,Orange,BAT013,01/2027,50,40,60,0,12,Sun Pharma,INV013,2024-11-13
+Pan D Capsule,Pantocid D Capsule,40mg+30mg,Alkem,box3,Orange,BAT014,02/2027,45,38,58,0,12,Alkem Labs,INV014,2024-11-16
+Digene Tablet,Eno Fruit Salt,-,Abbott,box3,Pink,BAT015,11/2025,70,8,12,0,12,Abbott India,INV015,2024-09-25
+ORS Powder,Electral Powder,-,FDC,box3,Orange,BAT016,08/2026,90,10,15,0,5,FDC Ltd,INV016,2024-10-05
+Betadine Gargle 2%,Hexidine Mouthwash,2%,Win-Medicare,box3,Purple,BAT017,07/2025,20,55,80,0,12,Win-Medicare,INV017,2024-08-22
+Becosules Capsule,Becosules Z Capsule,-,Pfizer,box3,Red,BAT018,09/2026,35,25,40,0,12,Pfizer India,INV018,2024-10-19
+
+Evion 400 Capsule,Evion 600 Capsule,400mg,Procter & Gamble,box4,Red,BAT019,05/2027,60,15,25,0,12,P&G,INV019,2024-11-08
+Shelcal 500 Tablet,Calcium Tablet 500,500mg,Abbott,box4,White,BAT020,06/2027,45,30,45,0,12,Abbott India,INV020,2024-11-20
+Meftal Spas Tablet,Drotin DS Tablet,-,Blue Cross,box4,Green,BAT021,10/2026,55,20,32,10,18,Blue Cross,INV021,2024-11-21
+Crocin DS Suspension,Dolo 250 Suspension,250mg/5ml,GSK,box4,Blue,BAT022,04/2026,28,30,45,5,12,GSK Pharma,INV022,2024-11-09
+Actified Cold Tablet,Sinarest Tablet,-,GSK,box4,Green,BAT023,09/2025,40,25,40,10,18,GSK Pharma,INV023,2024-10-29
+Sinarest Tablet,Actified Cold Tablet,-,Centaur,box4,Green,BAT024,12/2025,45,24,38,10,18,Centaur,INV024,2024-11-03
