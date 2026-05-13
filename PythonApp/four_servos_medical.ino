@@ -1,124 +1,101 @@
-  #include <Servo.h>
+#include <Servo.h>
 
-  // ---- Servo objects ----
-  Servo servo1;   // Box 1  (e.g. Painkiller)
-  Servo servo2;   // Box 2  (e.g. Paracetamol / Dolo)
-  Servo servo3;   // Box 3
-  Servo servo4;   // Box 4
+// Servo objects
+Servo servo1;  // Box 1 - Pin 5
+Servo servo2;  // Box 2 - Pin 6
+Servo servo3;  // Box 3 - Pin 9
+Servo servo4;  // Box 4 - Pin 10
 
-  // ---- Serial buffer ----
-  String inputString = "";
-  bool stringComplete = false;
+// LED pins
+const int led1 = 4;   // Box 1
+const int led2 = 7;   // Box 2
+const int led3 = 8;   // Box 3
+const int led4 = 11;  // Box 4
 
-  // ---- Pin mapping (change if needed) ----
-  // Use PWM pins for servos
-  const int servoPin1 = 9;
-  const int ledPin1   = 10;
+void setup() {
+  Serial.begin(115200);
+  
+  // Attach servos
+  servo1.attach(5);
+  servo2.attach(6);
+  servo3.attach(9);
+  servo4.attach(10);
+  
+  // Set LED pins as output
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  
+  // Initial position: all servos at 0 degrees, LEDs OFF
+  servo1.write(0);
+  servo2.write(0);
+  servo3.write(0);
+  servo4.write(0);
+  
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, LOW);
+  digitalWrite(led4, LOW);
+  
+  Serial.println("Servo & LED Control Ready! Send 1,2,3 or 4");
+}
 
-  const int servoPin2 = 6;
-  const int ledPin2   = 11;
-
-  const int servoPin3 = 5;
-  const int ledPin3   = 12;
-
-  const int servoPin4 = 3;
-  const int ledPin4   = 13;
-
-  void setup() {
-    Serial.begin(9600);
-
-    servo1.attach(servoPin1);
-    pinMode(ledPin1, OUTPUT);
-
-    servo2.attach(servoPin2);
-    pinMode(ledPin2, OUTPUT);
-
-    servo3.attach(servoPin3);
-    pinMode(ledPin3, OUTPUT);
-
-    servo4.attach(servoPin4);
-    pinMode(ledPin4, OUTPUT);
-
-    // Initial position
-    servo1.write(0);
-    servo2.write(0);  // Dolo: start at 90 (closed position)
-    servo3.write(0);
-    servo4.write(0);
-
-    // LEDs OFF initially
-    digitalWrite(ledPin1, LOW);
-    digitalWrite(ledPin2, LOW);
-    digitalWrite(ledPin3, LOW);
-    digitalWrite(ledPin4, LOW);
-
-    inputString.reserve(50);
+void loop() {
+  if (Serial.available() > 0) {
+    char input = Serial.read();
     
-    Serial.println("System Ready - Servos at 0° position");
-  }
-
-  void loop() {
-    // Read incoming serial characters
-    while (Serial.available()) {
-      char inChar = (char)Serial.read();
-      if (inChar == '\n') {
-        stringComplete = true;
-      } else {
-        inputString += inChar;
-      }
-    }
-
-    if (stringComplete) {
-      processCommand(inputString);
-      inputString = "";
-      stringComplete = false;
-    }
-  }
-
-  // ---- Handle commands from PC ----
-  // Accepted strings (case-insensitive):
-  // "painkiller" or "box1"  -> Servo 1
-  // "paracetamol", "dolo" or "box2" -> Servo 2
-  // "box3" -> Servo 3
-  // "box4" -> Servo 4
-  void processCommand(String cmd) {
-    cmd.trim();
-    cmd.toLowerCase();
-
-    if (cmd == "painkiller" ||cmd == "Pantocid D Capsule" || cmd == "box1") {
-      handleAction(servo1, ledPin1, "BOX1", 180, 0);
-      Serial.println("OK: BOX1");
-    }
-    else if (cmd == "paracetamol" || cmd == "dolo" || cmd == "box2") {
-      // Dolo servo: 90 se 0 ki taraf — reverse rotation
-      handleAction(servo2, ledPin2, "BOX2", 0, 180);
-      Serial.println("OK: BOX2");
-    }
-    else if (cmd == "box3" || cmd == "Digene Tablet") {
-      handleAction(servo3, ledPin3, "BOX3", 0, 180);
-      Serial.println("OK: BOX3");
-    }
-    else if (cmd == "box4" ||cmd == "ORS Powder") {
-      handleAction(servo4, ledPin4, "BOX4", 0, 180);
-      Serial.println("OK: BOX4");
-    }
-    else {
-      Serial.print("Unknown command: ");
-      Serial.println(cmd);
+    switch(input) {
+      case '1':
+        activateBox(1, servo1, led1);
+        break;
+        
+      case '2':
+        activateBox(2, servo2, led2);
+        break;
+        
+      case '3':
+        activateBox(3, servo3, led3);
+        break;
+        
+      case '4':
+        activateBox(4, servo4, led4);
+        break;
+        
+      default:
+        // Optional: echo unknown command
+        if (isprint(input)) {
+          Serial.print("Unknown command: ");
+          Serial.println(input);
+        }
+        break;
     }
   }
+}
 
-  // Common action for all servos
-  void handleAction(Servo &servoMotor, int ledPin, String boxName, int openAngle, int closeAngle) {
-    Serial.print("Opening ");
-    Serial.print(boxName);
-    Serial.println("...");
-    
-    servoMotor.write(openAngle);       // Move to open position
-    digitalWrite(ledPin, HIGH); // LED ON
-    delay(3000);                // Wait 3 seconds
-    
-    Serial.print("Closing ");
-    Serial.println(boxName);
-    servoMotor.write(closeAngle);      // Move back to closed position
-    digitalWrite(ledPin, LOW);  // LED OFF
+// Function to move servo from 0 to 180 and turn on LED
+void activateBox(int boxNum, Servo &servo, int ledPin) {
+  Serial.print("Activating Box ");
+  Serial.println(boxNum);
+  
+  // Turn ON LED
+  digitalWrite(ledPin, HIGH);
+  
+  // Sweep servo from 0 to 180 degrees
+  for (int pos = 0; pos <= 180; pos += 2) {  // Faster sweep
+    servo.write(pos);
+    delay(1);  // Adjust speed here (lower = faster)
   }
+  
+  // Optional: hold at 180 for a moment
+  delay(5);
+  
+  // Sweep back to 0 (optional - remove if you want only one way)
+  for (int pos = 180; pos >= 0; pos -= 2) {
+    servo.write(pos);
+    delay(1);
+  }
+  
+  // Turn OFF LED after movement (optional)
+  // digitalWrite(ledPin, LOW);
+}
