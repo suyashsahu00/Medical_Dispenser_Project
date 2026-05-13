@@ -1,10 +1,10 @@
 #include <Servo.h>
 
 // Servo objects
-Servo servo1;  // Box 1 - Pin 5
-Servo servo2;  // Box 2 - Pin 6
-Servo servo3;  // Box 3 - Pin 9
-Servo servo4;  // Box 4 - Pin 10
+Servo servo1;  // Pin 5  - Box 1
+Servo servo2;  // Pin 6  - Box 2
+Servo servo3;  // Pin 9  - Box 3
+Servo servo4;  // Pin 10 - Box 4
 
 // LED pins
 const int led1 = 4;   // Box 1
@@ -15,30 +15,26 @@ const int led4 = 11;  // Box 4
 void setup() {
   Serial.begin(115200);
   
-  // Attach servos
   servo1.attach(5);
   servo2.attach(6);
   servo3.attach(9);
   servo4.attach(10);
   
-  // Set LED pins as output
   pinMode(led1, OUTPUT);
   pinMode(led2, OUTPUT);
   pinMode(led3, OUTPUT);
   pinMode(led4, OUTPUT);
   
-  // Initial position: all servos at 0 degrees, LEDs OFF
+  // Initial Position
   servo1.write(0);
   servo2.write(0);
   servo3.write(0);
   servo4.write(0);
   
-  digitalWrite(led1, LOW);
-  digitalWrite(led2, LOW);
-  digitalWrite(led3, LOW);
-  digitalWrite(led4, LOW);
+  allLEDsOff();
   
-  Serial.println("Servo & LED Control Ready! Send 1,2,3 or 4");
+  Serial.println("Fast Servo Control Ready!");
+  Serial.println("Send 1, 2, 3 or 4");
 }
 
 void loop() {
@@ -46,56 +42,45 @@ void loop() {
     char input = Serial.read();
     
     switch(input) {
-      case '1':
-        activateBox(1, servo1, led1);
-        break;
-        
-      case '2':
-        activateBox(2, servo2, led2);
-        break;
-        
-      case '3':
-        activateBox(3, servo3, led3);
-        break;
-        
-      case '4':
-        activateBox(4, servo4, led4);
-        break;
-        
-      default:
-        // Optional: echo unknown command
-        if (isprint(input)) {
-          Serial.print("Unknown command: ");
-          Serial.println(input);
-        }
-        break;
+      case '1': activateBox(servo1, led1, 1); break;
+      case '2': activateBox(servo2, led2, 2); break;
+      case '3': activateBox(servo3, led3, 3); break;
+      case '4': activateBox(servo4, led4, 4); break;
     }
   }
 }
 
-// Function to move servo from 0 to 180 and turn on LED
-void activateBox(int boxNum, Servo &servo, int ledPin) {
+// Main Function - Fast Movement
+void activateBox(Servo &servo, int ledPin, int boxNum) {
   Serial.print("Activating Box ");
   Serial.println(boxNum);
   
-  // Turn ON LED
-  digitalWrite(ledPin, HIGH);
+  digitalWrite(ledPin, HIGH);   // LED ON
   
-  // Sweep servo from 0 to 180 degrees
-  for (int pos = 0; pos <= 180; pos += 2) {  // Faster sweep
+  // Fast Move to 180°
+  for (int pos = 0; pos <= 150; pos += 5) {
     servo.write(pos);
-    delay(1);  // Adjust speed here (lower = faster)
+    delay(5);        // Very fast movement
   }
   
-  // Optional: hold at 180 for a moment
-  delay(5);
+  delay(3000);       // Hold at 180° for 3 seconds
   
-  // Sweep back to 0 (optional - remove if you want only one way)
-  for (int pos = 180; pos >= 0; pos -= 2) {
+  // Fast Return to 0°
+  for (int pos = 150; pos >= 0; pos -= 5) {
     servo.write(pos);
-    delay(1);
+    delay(5);        // Very fast return
   }
   
-  // Turn OFF LED after movement (optional)
-  // digitalWrite(ledPin, LOW);
+  digitalWrite(ledPin, LOW);   // LED OFF after 3 seconds
+  
+  Serial.print("Box ");
+  Serial.print(boxNum);
+  Serial.println(" Done.");
+}
+
+void allLEDsOff() {
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, LOW);
+  digitalWrite(led4, LOW);
 }
