@@ -107,6 +107,8 @@
 Medical_Dispenser_Project/
 │
 ├── 📄 README.md                        ← You are here!
+├── 📄 LICENSE                          ← MIT License
+├── 📄 CONTRIBUTING.md                  ← Contribution guidelines
 │
 └── 📂 PythonApp/
     │
@@ -429,72 +431,25 @@ Paracetamol IP,Calpol 500 Tablet,500mg,Generic,box1,White,BAT025,06/2027,100,10,
 
 Contributions are what make the open-source community such an amazing place! Any contributions you make are **greatly appreciated**.
 
-### How to Contribute
+Please read **[CONTRIBUTING.md](CONTRIBUTING.md)** before opening a PR. It covers:
 
-1. **Fork** the repository
+- 📋 Code of Conduct
+- 🐛 Bug report & feature request templates
+- 🔧 Dev environment setup steps
+- ✅ PR checklist & review process
+- 📝 Commit message conventions (with emoji guide)
+- 🎨 Python & Arduino style guidelines
+- 💡 A curated list of open contribution ideas (beginner → advanced)
 
-   ```bash
-   # Click "Fork" on GitHub, then:
-   git clone https://github.com/YOUR_USERNAME/Medical_Dispenser_Project.git
-   ```
-2. **Create a Feature Branch**
-
-   ```bash
-   git checkout -b feature/your-amazing-feature
-   ```
-3. **Make Your Changes** and commit them
-
-   ```bash
-   git add .
-   git commit -m "✨ Add: your amazing feature description"
-   ```
-4. **Push** to your fork
-
-   ```bash
-   git push origin feature/your-amazing-feature
-   ```
-5. **Open a Pull Request** on GitHub
-
-### Commit Message Convention
-
-Use emoji prefixes for clarity:
-
-| Prefix             | When to Use              |
-| ------------------ | ------------------------ |
-| `✨ Add:`        | New feature              |
-| `🐛 Fix:`        | Bug fix                  |
-| `♻️ Refactor:` | Code refactoring         |
-| `📝 Docs:`       | Documentation changes    |
-| `⚡ Perf:`       | Performance improvements |
-| `🎨 Style:`      | UI/formatting changes    |
-
-### Ideas for Contribution
-
-- [ ] 🏥 Add patient name and prescription tracking
-- [ ] 📱 Build a web-based version of the billing interface
-- [ ] 🔔 Add low-stock alerts when medicine quantity is running low
-- [ ] 📈 Add daily/monthly sales reports
-- [ ] 🗄️ Migrate from CSV to SQLite for better data management
-- [ ] 🖨️ Add thermal printer support for physical receipts
-- [ ] 🔐 Add pharmacist login/authentication
+> **Quick start:** Fork → Branch → Commit → Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for full details.
+This project is licensed under the **MIT License** — see the **[LICENSE](LICENSE)** file for full details.
 
-```
-MIT License
-
-Copyright (c) 2026 Suyash Sahu
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software...
-```
+> In short: you are free to use, copy, modify, merge, publish, and distribute this software for any purpose — personal or commercial — as long as you include the original copyright notice.
 
 ---
 
