@@ -22,6 +22,7 @@ SHOP_NAME = "MediCare Pharmacy"
 SHOP_ADDRESS_LINE1 = "13 Health Street"
 SHOP_ADDRESS_LINE2 = "Mumbai, Maharashtra, India"
 SHOP_PHONE = "+91-9345678991"
+SHOP_GSTIN = "27AAAAA0000A1Z5"   # Placeholder GSTIN for project demo
 
 
 # ---------------- ARDUINO ---------------- #
